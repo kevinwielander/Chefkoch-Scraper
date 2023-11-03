@@ -1,16 +1,25 @@
-import scrapy
+import base64
+
+import requests
+from bs4 import BeautifulSoup
+from PIL import Image
+from io import BytesIO
+import json
+
+# author: Cveta, Kevin
+# TU Wien, 2023
 
 # Base URL
 base_url = 'https://www.chefkoch.de/'
-
+max_page = 2
 # Paths for different meal types
 meal_paths = {
-    'breakfast': 'rs/s0t53/Fruehstueck-Rezepte.html',
-    # 'snack': 'rs/s0t71/Snack-Rezepte.html',
-    # 'dessert': 'rs/s0t90/Dessert-Rezepte.html',
-    # 'side_dish': 'rs/s0t36/Beilage-Rezepte.html',
-    # 'starter': 'rs/s0t19/Vorspeise-Rezepte.html',
-    # 'main_dish': 'rs/s0t21/Hauptspeise-Rezepte.html'
+    'breakfast': 'rs/s$page$t53/Fruehstueck-Rezepte.html',
+    #'snack': 'rs/s$page$t71/Snack-Rezepte.html',
+    #'dessert': 'rs/s$page$t90/Dessert-Rezepte.html',
+    #'side_dish': 'rs/s$page$t36/Beilage-Rezepte.html',
+    #'starter': 'rs/s$page$t19/Vorspeise-Rezepte.html',
+    #'main_dish': 'rs/s$page$t21/Hauptspeise-Rezepte.html'
 }
 
 # Add the base URL to each path
@@ -35,7 +44,7 @@ for meal, url in full_urls.items():
                 recipe_response = requests.get(link)
                 soup = BeautifulSoup(recipe_response.content, 'html.parser')
 
-                plus = soup.find('img', alt_ = 'Chefkoch Plus Logo')
+                plus = soup.find('img', alt_ ='Chefkoch Plus Logo')
                 if plus:
                     continue
 
@@ -85,7 +94,7 @@ for meal, url in full_urls.items():
                 if image_url:
                     image_response = requests.get(image_url)
                     image_bytes = image_response.content
-                    recipe_dict['Image'] = base64.decodebytes(image_bytes)
+                    recipe_dict['Image'] = base64.b64encode(image_bytes).decode('utf-8')
                     # Display the image
                     #image = Image.open(BytesIO(image_bytes))
                     #image.show()
@@ -112,4 +121,5 @@ for meal, url in full_urls.items():
         else:
             print(f"Failed to retrieve content, status code: {response.status_code}")
 
-
+    with open(f'../recipes_data/{meal}.json', 'w', encoding='utf-8') as f:
+        json.dump(recipe_data_list, f, ensure_ascii=False, indent=4)
