@@ -1,1 +1,2 @@
-scrapy
+BeautifulSoup4
+Pillow

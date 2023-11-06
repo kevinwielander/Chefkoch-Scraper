@@ -11,7 +11,7 @@ import json
 
 # Base URL
 base_url = 'https://www.chefkoch.de/'
-max_page = 2
+max_page = 23
 # Paths for different meal types
 meal_paths = {
     'breakfast': 'rs/s$page$t53/Fruehstueck-Rezepte.html',
@@ -114,7 +114,11 @@ for meal, url in full_urls.items():
                         ingredient_td = row.find('td', class_='td-right')
                         quantity = quantity_td.get_text(strip=True).replace(' ', '') if quantity_td else ''
                         ingredient = ingredient_td.get_text(strip=True) if ingredient_td else ''
-                        ingredients.append(f"{quantity} - {ingredient}")
+                        ingredient_dict = {
+                            'amount': quantity,
+                            'ingredient': ingredient
+                        }
+                        ingredients.append(ingredient_dict)
 
                 recipe_dict['Ingredients'] = ingredients
                 recipe_data_list.append(recipe_dict)
