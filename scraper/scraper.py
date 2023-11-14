@@ -24,11 +24,11 @@ max_page = 23
 # Paths for different meal types
 meal_paths = {
     'breakfast': 'rs/s$page$t53/Fruehstueck-Rezepte.html',
-    #'snack': 'rs/s$page$t71/Snack-Rezepte.html',
-    #'dessert': 'rs/s$page$t90/Dessert-Rezepte.html',
-    #'side_dish': 'rs/s$page$t36/Beilage-Rezepte.html',
-    #'starter': 'rs/s$page$t19/Vorspeise-Rezepte.html',
-    #'main_dish': 'rs/s$page$t21/Hauptspeise-Rezepte.html'
+    'snack': 'rs/s$page$t71/Snack-Rezepte.html',
+    'dessert': 'rs/s$page$t90/Dessert-Rezepte.html',
+    'side_dish': 'rs/s$page$t36/Beilage-Rezepte.html',
+    'starter': 'rs/s$page$t19/Vorspeise-Rezepte.html',
+    'main_dish': 'rs/s$page$t21/Hauptspeise-Rezepte.html'
 }
 
 # Add the base URL to each path

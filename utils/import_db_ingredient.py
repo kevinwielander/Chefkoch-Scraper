@@ -1,29 +1,12 @@
 import base64
-
+import os
 import psycopg2
 import json
 
-# Replace these with your database connection details
-dbname = "recipes"
-user = "root"
-password = "root"
-host = "localhost"
-port = "5432"
 
-# Replace this with your JSON file path
-ingredients_set_file = "../analysis/ingredients_lemma_set.txt"
 
-# Connect to the PostgreSQL database
-try:
-    connection = psycopg2.connect(
-        dbname=dbname,
-        user=user,
-        password=password,
-        host=host,
-        port=port
-    )
-    cursor = connection.cursor()
-
+def import_db_ingredient(cursor, connection):
+    ingredients_set_file = "../analysis/ingredients_lemma_set.txt"
     # Create the 'recipes' table if it doesn't exist
     create_table_query = """
        CREATE TABLE IF NOT EXISTS ingredients (
@@ -45,11 +28,3 @@ try:
             cursor.execute(insert_query, (ingredient_name,))
 
         connection.commit()
-
-except Exception as e:
-    print(f"Error: {e}")
-
-finally:
-    # Close the cursor and connection
-    cursor.close()
-    connection.close()
