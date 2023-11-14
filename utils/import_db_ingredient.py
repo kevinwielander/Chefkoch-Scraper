@@ -38,10 +38,11 @@ try:
     with open(ingredients_set_file, 'r', encoding='utf-8') as file:
         # Iterate over each entry and insert into the table
         for line in file:
+            ingredient_name = line.replace('\n', "")
 
             # Insert the ingredient into the table
             insert_query = "INSERT INTO ingredients (name) VALUES (%s);"
-            cursor.execute(insert_query, (line,))
+            cursor.execute(insert_query, (ingredient_name,))
 
         connection.commit()
 
