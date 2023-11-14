@@ -14,9 +14,7 @@ try:
             # Process each line as needed
             cleaned_ingredient = re.sub(r'\s*\(.*\)|\s.*', '', line)
             cleaned_string = cleaned_ingredient.replace(',', '')
-
-            print(cleaned_string)
-            ingredient_lemma = nlp(cleaned_string)
+            ingredient_lemma = nlp(cleaned_string).text
             if ingredient_lemma not in ingredients_lemmatized:
                 ingredients_lemmatized.append(ingredient_lemma)
 
