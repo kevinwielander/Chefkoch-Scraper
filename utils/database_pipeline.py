@@ -1,37 +1,22 @@
-import psycopg2
+from db_operations import setup_db_connection, terminate_db_connection
+from transform_json_to_database_table import import_db_recipe_ingredient, import_db_ingredient, import_db_recipe
+from fetch_json import download_and_save_recipes
 
-from utils.import_db_ingredient import import_db_ingredient
-import os
-
-from utils.import_db_recipe import import_db_recipe
-
-
-def setup_db_connection():
-    dbname = os.environ['dbname']
-    user = os.environ['user']
-    password = os.environ['password']
-    host = os.environ['host']
-    port = os.environ['port']
-    connection = psycopg2.connect(
-        dbname=dbname,
-        user=user,
-        password=password,
-        host=host,
-        port=port
-    )
-    cursor = connection.cursor()
-    return cursor, connection
-
-
-def terminate_db_connection(cursor, connection):
-    cursor.close()
-    connection.close()
+import traceback
 
 
 try:
+    print("---- START DOWNLOADING RECIPES! ----")
+    download_and_save_recipes()
     cursorDB, connectionDB = setup_db_connection()
+    print("---- START INGREDIENTS! ----")
     import_db_ingredient(cursorDB, connectionDB)
+    print("---- START RECIPES! ---- ")
     import_db_recipe(cursorDB, connectionDB)
+    print("---- START RECIPES & INGREDIENTS! ----")
+    import_db_recipe_ingredient(cursorDB, connectionDB)
     terminate_db_connection(cursorDB, connectionDB)
+    print("---- DONE :) ----")
 except Exception as e:
     print(f"Error: {e}")
+    traceback.print_exc()

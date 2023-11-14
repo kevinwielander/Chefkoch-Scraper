@@ -1,0 +1,1 @@
+SELECT id  FROM ingredients WHERE name = %s;

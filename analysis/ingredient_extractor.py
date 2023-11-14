@@ -54,4 +54,4 @@ def extract_ingredients_and_amounts(output_file):
 
 
 # Usage
-extract_ingredients_and_amounts('../analysis/occurrences_of_ingredients.txt')
+extract_ingredients_and_amounts('occurrences_of_ingredients.txt')

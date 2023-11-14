@@ -1,0 +1,1 @@
+SELECT id  FROM recipes WHERE title = %s;

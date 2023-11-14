@@ -43,4 +43,4 @@ def extract_units_and_ingredients(json_file, output_file):
 
 
 # Usage
-extract_units_and_ingredients('../recipes_data/breakfast_page_22.json', '../analysis/units_and_ingredients.txt')
+extract_units_and_ingredients('../recipes_data/test/breakfast.json', '../analysis/units_and_ingredients.txt')
