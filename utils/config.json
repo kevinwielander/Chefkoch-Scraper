@@ -1,0 +1,28 @@
+{
+    "files": [
+        {
+            "name": "breakfast",
+            "id": "1euD25jAvhNm5H-q1yvFErCMBYOpJYDZH"
+        },
+        {
+            "name": "dessert",
+            "id": "1E2cREi8ZTQ-tWKdc_dvyn3m_LMzO3030"
+        },
+        {
+            "name": "main_dish",
+            "id": "1GF421Xf87KsHEZOMc-JUiAoqyhvbV3Hn"
+        },
+        {
+            "name": "side_dish",
+            "id": "1YUciEP_kVew2_ShCozSoWM-Ed4IA3XCJ"
+        },
+        {
+            "name": "snack",
+            "id": "13mCKT9Rbp9p8dePJ3dwIOCeV3zLVWkwk"
+        },
+        {
+            "name": "starter",
+            "id": "1IX6VGgDwKu_6pZ2gr4Gv21W6AR1NzFj5"
+        }
+    ]
+}
