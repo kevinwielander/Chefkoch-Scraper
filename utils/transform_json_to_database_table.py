@@ -18,7 +18,6 @@ list_jsons = [
 
 
 def import_db_recipe(cursor, connection):
-    nlp = spacy.load('de_core_news_md')
     # Create the 'recipes' table if it doesn't exist
     execute_query(cursor, 'queries/create_recipe_table.sql')
     connection.commit()
