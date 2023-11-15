@@ -47,7 +47,7 @@ def download_and_save_recipes():
         os.makedirs(output_folder)
 
     # Read config file
-    with open('config.json', 'r') as file:
+    with open('utils/config.json', 'r') as file:
         config = json.load(file)
 
     # Process each file

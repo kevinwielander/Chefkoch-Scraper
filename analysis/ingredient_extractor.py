@@ -1,13 +1,12 @@
 import json
 
 
-def extract_ingredients_and_amounts(output_file):
+def extract_ingredients():
     """
     Reads a JSON file containing recipe data and extracts ingidients and also stores the amounts
     Writes the results to an output file.
 
     :param json_file: Path to the JSON file
-    :param output_file: Path to the output file where the results will be written
     """
     # Read the JSON file
 
@@ -48,10 +47,7 @@ def extract_ingredients_and_amounts(output_file):
         sorted_ingredients = sorted(occurrences_of_ingredients.items(), key=lambda x: x[1], reverse=True)
 
     # Write the units and ingredients to the output file
-    with open(output_file, 'w', encoding='utf-8') as file:
+    with open('analysis/ingredients.txt', 'w', encoding='utf-8') as file:
         for ingredient, count in sorted_ingredients:
-            file.write(f"Count: {count}, -> {ingredient}\n")  # Using a list for JSON serialization
+            file.write(f"{ingredient}\n")
 
-
-# Usage
-extract_ingredients_and_amounts('occurrences_of_ingredients.txt')

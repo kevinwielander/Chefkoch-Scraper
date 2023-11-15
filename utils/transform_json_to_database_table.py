@@ -5,7 +5,7 @@ import json
 import spacy
 import re
 
-from db_operations import execute_parameterized_query, execute_query
+from utils.db_operations import execute_parameterized_query, execute_query
 
 list_jsons = [
     '../recipes_data/breakfast.json',
