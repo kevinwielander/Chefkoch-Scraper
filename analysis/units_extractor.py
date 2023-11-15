@@ -12,6 +12,8 @@ soup = BeautifulSoup(html_content, 'html.parser')
 
 # Find all the HTML comment tags containing 'ngRepeat' and corresponding option elements
 comments = soup.find_all('option')
-
-for comment in comments:
-   print(comment.text)
+comments.pop(0)
+comments.pop(0)
+with open('units.txt', 'w', encoding='utf-8') as file:
+    for comment in comments:
+        file.write(f"{comment.text}\n")
